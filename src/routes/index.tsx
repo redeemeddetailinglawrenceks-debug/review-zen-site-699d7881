@@ -278,7 +278,7 @@ function Services() {
               )}
             >
               {p.featured && (
-                <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-[var(--gradient-gold)] px-4 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-[color:var(--navy-deep)]">
+                <span style={{ backgroundImage: "var(--gradient-gold)" }} className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full px-4 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-[color:var(--navy-deep)]">
                   Most Popular
                 </span>
               )}
