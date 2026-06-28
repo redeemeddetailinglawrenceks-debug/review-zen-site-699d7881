@@ -236,7 +236,8 @@ function Hero() {
         <div className="mt-12 flex flex-col items-center gap-3 sm:flex-row">
           <a
             href="#book"
-            className="group inline-flex items-center gap-2 rounded-full bg-[var(--gradient-gold)] px-8 py-3.5 text-sm font-medium uppercase tracking-[0.18em] text-[color:var(--navy-deep)] shadow-[var(--shadow-gold)] transition-transform hover:-translate-y-0.5"
+            style={{ backgroundImage: "var(--gradient-gold)" }}
+            className="group inline-flex items-center gap-2 rounded-full px-8 py-3.5 text-sm font-medium uppercase tracking-[0.18em] text-[color:var(--navy-deep)] shadow-[var(--shadow-gold)] transition-transform hover:-translate-y-0.5"
           >
             <Sparkles className="h-4 w-4" />
             Book Your Detail
