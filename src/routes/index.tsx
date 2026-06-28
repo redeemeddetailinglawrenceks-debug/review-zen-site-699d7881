@@ -4,7 +4,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { Phone, MapPin, Mail, Star, Check, Sparkles, ChevronDown, Instagram, Youtube } from "lucide-react";
 
-import logo from "@/assets/logo.png";
+import logo from "@/assets/logo.png.asset.json";
 import hero from "@/assets/hero.jpg";
 import { fetchReviews, submitReview, reviewSchema } from "@/lib/reviews";
 import { Button } from "@/components/ui/button";
