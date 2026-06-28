@@ -6,6 +6,7 @@ import { Phone, MapPin, Mail, Star, Check, Sparkles, ChevronDown, Instagram, You
 
 import logo from "@/assets/logo.png.asset.json";
 import hero from "@/assets/hero.jpg";
+import team from "@/assets/team-oliver-layton.png.asset.json";
 import { fetchReviews, submitReview, reviewSchema } from "@/lib/reviews";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -343,6 +344,22 @@ function About() {
             detail.
           </p>
         </div>
+
+        <figure className="mx-auto mt-16 max-w-3xl">
+          <div className="relative overflow-hidden rounded-2xl border border-[color:var(--gold)]/30 shadow-2xl shadow-black/40">
+            <img
+              src={team.url}
+              alt="Oliver (left) and Layton (right), co-founders of Redeemed Detailing"
+              width={1200}
+              height={1600}
+              className="h-auto w-full object-cover"
+            />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[color:var(--navy-deep)]/60 via-transparent to-transparent" />
+          </div>
+          <figcaption className="mt-4 text-center text-xs uppercase tracking-[0.2em] text-muted-foreground">
+            Oliver (left) and Layton (right) — Lawrence, Kansas
+          </figcaption>
+        </figure>
 
         <div className="mt-16 grid gap-6 md:grid-cols-2">
           {[
