@@ -592,7 +592,8 @@ function Reviews() {
               <Button
                 type="submit"
                 disabled={mutation.isPending}
-                className="w-full rounded-full bg-[var(--gradient-gold)] py-6 text-sm font-medium uppercase tracking-[0.2em] text-[color:var(--navy-deep)] shadow-[var(--shadow-gold)] hover:opacity-95"
+                style={{ backgroundImage: "var(--gradient-gold)" }}
+                className="w-full rounded-full py-6 text-sm font-medium uppercase tracking-[0.2em] text-[color:var(--navy-deep)] shadow-[var(--shadow-gold)] hover:opacity-95"
               >
                 {mutation.isPending ? "Posting…" : "Submit Review"}
               </Button>
@@ -874,7 +875,8 @@ function Booking() {
             </div>
             <Button
               type="submit"
-              className="mt-7 w-full rounded-full bg-[var(--gradient-gold)] py-6 text-sm font-medium uppercase tracking-[0.2em] text-[color:var(--navy-deep)] shadow-[var(--shadow-gold)] hover:opacity-95"
+              style={{ backgroundImage: "var(--gradient-gold)" }}
+              className="mt-7 w-full rounded-full py-6 text-sm font-medium uppercase tracking-[0.2em] text-[color:var(--navy-deep)] shadow-[var(--shadow-gold)] hover:opacity-95"
             >
               Send Booking Request via Text
             </Button>
