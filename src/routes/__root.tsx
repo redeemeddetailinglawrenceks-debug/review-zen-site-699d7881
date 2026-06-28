@@ -12,8 +12,6 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Toaster } from "@/components/ui/sonner";
-import { Nav } from "@/components/site/Nav";
-import { Footer } from "@/components/site/Footer";
 
 function NotFoundComponent() {
   return (
@@ -136,11 +134,7 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="min-h-screen text-foreground">
-        <Nav />
-        <Outlet />
-        <Footer />
-      </div>
+      <Outlet />
       <Toaster richColors position="top-center" theme="dark" />
     </QueryClientProvider>
   );
