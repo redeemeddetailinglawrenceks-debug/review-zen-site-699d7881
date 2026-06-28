@@ -4,7 +4,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { Phone, MapPin, Mail, Star, Check, Sparkles, ChevronDown, Instagram, Youtube } from "lucide-react";
 
-import logo from "@/assets/logo.png";
+import logo from "@/assets/logo.png.asset.json";
 import hero from "@/assets/hero.jpg";
 import { fetchReviews, submitReview, reviewSchema } from "@/lib/reviews";
 import { Button } from "@/components/ui/button";
@@ -158,7 +158,7 @@ function Nav() {
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6">
         <a href="#top" className="flex items-center gap-3">
-          <img src={logo} alt="Redeemed Detailing" width={40} height={40} className="h-10 w-10" />
+          <img src={logo.url} alt="Redeemed Detailing" width={40} height={40} className="h-10 w-10" />
           <span className="font-display text-lg tracking-wide text-gradient-gold">
             Redeemed Detailing
           </span>
@@ -209,7 +209,7 @@ function Hero() {
 
       <div className="mx-auto flex min-h-screen max-w-5xl flex-col items-center justify-center px-6 pt-32 pb-20 text-center">
         <img
-          src={logo}
+          src={logo.url}
           alt="Redeemed Detailing emblem"
           width={180}
           height={180}
@@ -908,7 +908,7 @@ function Footer() {
   return (
     <footer className="border-t border-border/60 bg-[color:var(--navy-deep)]/80 py-14">
       <div className="mx-auto flex max-w-7xl flex-col items-center gap-6 px-6 text-center">
-        <img src={logo} alt="" width={56} height={56} className="h-14 w-14 opacity-90" />
+        <img src={logo.url} alt="" width={56} height={56} className="h-14 w-14 opacity-90" />
         <p className="font-display text-xl text-gradient-gold">Redeemed Detailing</p>
         <p className="max-w-md text-sm italic text-muted-foreground">
           “Commit to the Lord whatever you do, and He will establish your plans.” — Proverbs 16:3
