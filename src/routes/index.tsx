@@ -236,7 +236,8 @@ function Hero() {
         <div className="mt-12 flex flex-col items-center gap-3 sm:flex-row">
           <a
             href="#book"
-            className="group inline-flex items-center gap-2 rounded-full bg-[var(--gradient-gold)] px-8 py-3.5 text-sm font-medium uppercase tracking-[0.18em] text-[color:var(--navy-deep)] shadow-[var(--shadow-gold)] transition-transform hover:-translate-y-0.5"
+            style={{ backgroundImage: "var(--gradient-gold)" }}
+            className="group inline-flex items-center gap-2 rounded-full px-8 py-3.5 text-sm font-medium uppercase tracking-[0.18em] text-[color:var(--navy-deep)] shadow-[var(--shadow-gold)] transition-transform hover:-translate-y-0.5"
           >
             <Sparkles className="h-4 w-4" />
             Book Your Detail
@@ -277,7 +278,7 @@ function Services() {
               )}
             >
               {p.featured && (
-                <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-[var(--gradient-gold)] px-4 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-[color:var(--navy-deep)]">
+                <span style={{ backgroundImage: "var(--gradient-gold)" }} className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full px-4 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-[color:var(--navy-deep)]">
                   Most Popular
                 </span>
               )}
@@ -591,7 +592,8 @@ function Reviews() {
               <Button
                 type="submit"
                 disabled={mutation.isPending}
-                className="w-full rounded-full bg-[var(--gradient-gold)] py-6 text-sm font-medium uppercase tracking-[0.2em] text-[color:var(--navy-deep)] shadow-[var(--shadow-gold)] hover:opacity-95"
+                style={{ backgroundImage: "var(--gradient-gold)" }}
+                className="w-full rounded-full py-6 text-sm font-medium uppercase tracking-[0.2em] text-[color:var(--navy-deep)] shadow-[var(--shadow-gold)] hover:opacity-95"
               >
                 {mutation.isPending ? "Posting…" : "Submit Review"}
               </Button>
@@ -873,7 +875,8 @@ function Booking() {
             </div>
             <Button
               type="submit"
-              className="mt-7 w-full rounded-full bg-[var(--gradient-gold)] py-6 text-sm font-medium uppercase tracking-[0.2em] text-[color:var(--navy-deep)] shadow-[var(--shadow-gold)] hover:opacity-95"
+              style={{ backgroundImage: "var(--gradient-gold)" }}
+              className="mt-7 w-full rounded-full py-6 text-sm font-medium uppercase tracking-[0.2em] text-[color:var(--navy-deep)] shadow-[var(--shadow-gold)] hover:opacity-95"
             >
               Send Booking Request via Text
             </Button>
