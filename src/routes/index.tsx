@@ -9,6 +9,8 @@ import hero from "@/assets/hero.jpg";
 import team from "@/assets/team-oliver-layton.png.asset.json";
 import beforeHighlander1 from "@/assets/before-highlander-1.jpg.asset.json";
 import afterHighlander1 from "@/assets/after-highlander-1.jpg.asset.json";
+import beforeNavigator1 from "@/assets/before-navigator-1.jpg.asset.json";
+import afterNavigator1 from "@/assets/after-navigator-1.jpg.asset.json";
 import { fetchReviews, submitReview, reviewSchema } from "@/lib/reviews";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -83,7 +85,7 @@ const PACKAGES = [
   {
     icon: "✦",
     name: "Clay Bar Add-On",
-    price: "+$20",
+    price: "+$40",
     blurb: "Exterior & Full only",
     items: [
       "Removes embedded contaminants",
@@ -416,6 +418,7 @@ function Gallery() {
         <div className="mt-14 grid gap-6 md:grid-cols-2">
           {[
             { before: beforeHighlander1.url, after: afterHighlander1.url, label: "Toyota Highlander — Interior Detail" },
+            { before: beforeNavigator1.url, after: afterNavigator1.url, label: "Lincoln Navigator — Interior Detail" },
             { before: null, after: null, label: "Coming soon" },
           ].map((pair, i) => (
             <div
@@ -759,7 +762,7 @@ function Booking() {
       ``,
       `Name: ${form.firstName} ${form.lastName}`.trim(),
       `Phone: ${form.phone}`,
-      `Package: ${form.pkg}${form.clayBar ? " + Clay Bar (+$20)" : ""}`,
+      `Package: ${form.pkg}${form.clayBar ? " + Clay Bar (+$40)" : ""}`,
       `Vehicle: ${form.vehicle}`,
       form.notes ? `Notes: ${form.notes}` : "",
     ].filter(Boolean);
@@ -892,7 +895,7 @@ function Booking() {
                   onChange={(e) => update("clayBar", e.target.checked)}
                   className="h-4 w-4 accent-[color:var(--gold)]"
                 />
-                Add Clay Bar Treatment (+$20, Exterior or Full Detail only)
+                Add Clay Bar Treatment (+$40, Exterior or Full Detail only)
               </label>
               <Field label="Vehicle (Year, Make, Model)" className="sm:col-span-2">
                 <Input
