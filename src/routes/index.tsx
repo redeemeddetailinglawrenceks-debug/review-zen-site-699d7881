@@ -125,7 +125,7 @@ const FAQS = [
 
 function Home() {
   return (
-    <div className="min-h-screen text-foreground">
+    <div className="min-h-screen overflow-x-hidden text-foreground">
       <Nav />
       <Hero />
       <Services />
