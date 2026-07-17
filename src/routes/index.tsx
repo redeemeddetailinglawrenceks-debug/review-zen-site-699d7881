@@ -414,24 +414,44 @@ function Gallery() {
         </div>
 
         <div className="mt-14 grid gap-6 md:grid-cols-2">
-          {[1, 2].map((n) => (
+          {[
+            { before: beforeHighlander1.url, after: afterHighlander1.url, label: "Toyota Highlander — Interior Detail" },
+            { before: null, after: null, label: "Coming soon" },
+          ].map((pair, i) => (
             <div
-              key={n}
-              className="grid grid-cols-2 gap-2 rounded-2xl border border-border/60 bg-card/40 p-3"
+              key={i}
+              className="rounded-2xl border border-border/60 bg-card/40 p-3"
             >
-              {(["Before", "After"] as const).map((label) => (
-                <div
-                  key={label}
-                  className="relative aspect-square overflow-hidden rounded-xl bg-[color:var(--navy-deep)]"
-                >
-                  <div className="absolute inset-0 flex items-center justify-center text-xs uppercase tracking-[0.3em] text-muted-foreground/60">
-                    Photo coming soon
-                  </div>
-                  <span className="absolute left-3 top-3 rounded-full bg-[color:var(--navy-deep)]/80 px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-[color:var(--gold)] backdrop-blur">
-                    {label}
-                  </span>
-                </div>
-              ))}
+              <div className="grid grid-cols-2 gap-2">
+                {(["Before", "After"] as const).map((label) => {
+                  const src = label === "Before" ? pair.before : pair.after;
+                  return (
+                    <div
+                      key={label}
+                      className="relative aspect-square overflow-hidden rounded-xl bg-[color:var(--navy-deep)]"
+                    >
+                      {src ? (
+                        <img
+                          src={src}
+                          alt={`${label} — ${pair.label}`}
+                          className="absolute inset-0 h-full w-full object-cover"
+                          loading="lazy"
+                        />
+                      ) : (
+                        <div className="absolute inset-0 flex items-center justify-center text-xs uppercase tracking-[0.3em] text-muted-foreground/60">
+                          Photo coming soon
+                        </div>
+                      )}
+                      <span className="absolute left-3 top-3 rounded-full bg-[color:var(--navy-deep)]/80 px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-[color:var(--gold)] backdrop-blur">
+                        {label}
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
+              <p className="mt-3 px-1 text-center text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                {pair.label}
+              </p>
             </div>
           ))}
         </div>
@@ -439,6 +459,7 @@ function Gallery() {
         <p className="mt-6 text-center text-xs uppercase tracking-[0.2em] text-muted-foreground">
           Share photos with us and we'll feature them here.
         </p>
+
       </div>
     </section>
   );
