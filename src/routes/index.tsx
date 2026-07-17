@@ -7,6 +7,8 @@ import { Phone, MapPin, Mail, Star, Check, Sparkles, ChevronDown, Instagram, You
 import logo from "@/assets/logo.png.asset.json";
 import hero from "@/assets/hero.jpg";
 import team from "@/assets/team-oliver-layton.png.asset.json";
+import beforeHighlander1 from "@/assets/before-highlander-1.jpg.asset.json";
+import afterHighlander1 from "@/assets/after-highlander-1.jpg.asset.json";
 import { fetchReviews, submitReview, reviewSchema } from "@/lib/reviews";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
