@@ -35,3 +35,8 @@ export async function submitReview(input: z.infer<typeof reviewSchema>): Promise
   if (error) throw error;
   return data;
 }
+
+export async function deleteReview(id: string): Promise<void> {
+  const { error } = await supabase.from("reviews").delete().eq("id", id);
+  if (error) throw error;
+}
