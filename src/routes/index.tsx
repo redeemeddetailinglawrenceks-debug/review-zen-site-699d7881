@@ -538,6 +538,36 @@ function Reviews() {
     onError: (e: Error) => toast.error(e.message || "Something went wrong"),
   });
 
+  // Hidden owner delete: tap the small star next to a reviewer's name 5 times
+  // within 3 seconds to arm delete mode. Auto-disarms after 60s.
+  const [armed, setArmed] = useState(false);
+  const [taps, setTaps] = useState<number[]>([]);
+  useEffect(() => {
+    if (!armed) return;
+    const t = setTimeout(() => setArmed(false), 60_000);
+    return () => clearTimeout(t);
+  }, [armed]);
+  function registerTap() {
+    if (armed) return;
+    const now = Date.now();
+    const recent = [...taps, now].filter((t) => now - t < 3000);
+    setTaps(recent);
+    if (recent.length >= 5) {
+      setArmed(true);
+      setTaps([]);
+      toast("Delete mode on", { description: "Tap the trash icon to remove a review." });
+    }
+  }
+
+  const deleteMutation = useMutation({
+    mutationFn: deleteReview,
+    onSuccess: () => {
+      toast.success("Review removed");
+      qc.invalidateQueries({ queryKey: ["reviews"] });
+    },
+    onError: (e: Error) => toast.error(e.message || "Could not delete"),
+  });
+
   const avg = useMemo(() => {
     if (!reviews.length) return 0;
     return reviews.reduce((s, r) => s + r.rating, 0) / reviews.length;
