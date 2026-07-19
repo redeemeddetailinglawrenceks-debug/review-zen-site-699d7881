@@ -11,7 +11,7 @@ import beforeHighlander1 from "@/assets/before-highlander-1.jpg.asset.json";
 import afterHighlander1 from "@/assets/after-highlander-1.jpg.asset.json";
 import beforeNavigator1 from "@/assets/before-navigator-1.jpg.asset.json";
 import afterNavigator1 from "@/assets/after-navigator-1.jpg.asset.json";
-import { fetchReviews, submitReview, reviewSchema } from "@/lib/reviews";
+import { fetchReviews, submitReview, deleteReview, reviewSchema } from "@/lib/reviews";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
