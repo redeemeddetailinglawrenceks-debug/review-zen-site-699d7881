@@ -696,7 +696,17 @@ function Reviews() {
               >
                 <div className="flex items-start justify-between gap-4">
                   <div>
-                    <div className="font-display text-lg">{r.name}</div>
+                    <div className="flex items-center gap-2 font-display text-lg">
+                      {r.name}
+                      <button
+                        type="button"
+                        aria-hidden="true"
+                        onClick={registerTap}
+                        className="text-[color:var(--gold)]/40 transition-colors hover:text-[color:var(--gold)]/60"
+                      >
+                        <Star className="h-3 w-3" fill="currentColor" />
+                      </button>
+                    </div>
                     <div className="mt-1 text-xs uppercase tracking-[0.16em] text-muted-foreground">
                       {new Date(r.created_at).toLocaleDateString(undefined, {
                         month: "long",
@@ -705,7 +715,23 @@ function Reviews() {
                       })}
                     </div>
                   </div>
-                  <StarRating value={r.rating} size="sm" />
+                  <div className="flex items-center gap-3">
+                    <StarRating value={r.rating} size="sm" />
+                    {armed && (
+                      <button
+                        type="button"
+                        onClick={() => {
+                          if (confirm(`Delete review from ${r.name}?`)) {
+                            deleteMutation.mutate(r.id);
+                          }
+                        }}
+                        className="rounded-full border border-destructive/40 p-2 text-destructive transition-colors hover:bg-destructive/10"
+                        aria-label="Delete review"
+                      >
+                        <Trash2 className="h-4 w-4" />
+                      </button>
+                    )}
+                  </div>
                 </div>
                 <p className="mt-4 whitespace-pre-wrap text-sm leading-relaxed text-[color:var(--ivory)]/85">
                   {r.body}
