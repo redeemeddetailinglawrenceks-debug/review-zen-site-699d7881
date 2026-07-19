@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
-import { Phone, MapPin, Mail, Star, Check, Sparkles, ChevronDown, Instagram, Youtube } from "lucide-react";
+import { Phone, MapPin, Mail, Star, Check, Sparkles, ChevronDown, Instagram, Youtube, Trash2 } from "lucide-react";
 
 import logo from "@/assets/logo.png.asset.json";
 import hero from "@/assets/hero.jpg";
