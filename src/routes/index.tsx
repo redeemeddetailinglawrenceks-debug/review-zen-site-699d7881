@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
-import { Phone, MapPin, Mail, Star, Check, Sparkles, ChevronDown, Instagram, Youtube } from "lucide-react";
+import { Phone, MapPin, Mail, Star, Check, Sparkles, ChevronDown, Instagram, Youtube, Trash2 } from "lucide-react";
 
 import logo from "@/assets/logo.png.asset.json";
 import hero from "@/assets/hero.jpg";
@@ -11,7 +11,7 @@ import beforeHighlander1 from "@/assets/before-highlander-1.jpg.asset.json";
 import afterHighlander1 from "@/assets/after-highlander-1.jpg.asset.json";
 import beforeNavigator1 from "@/assets/before-navigator-1.jpg.asset.json";
 import afterNavigator1 from "@/assets/after-navigator-1.jpg.asset.json";
-import { fetchReviews, submitReview, reviewSchema } from "@/lib/reviews";
+import { fetchReviews, submitReview, deleteReview, reviewSchema } from "@/lib/reviews";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -538,6 +538,36 @@ function Reviews() {
     onError: (e: Error) => toast.error(e.message || "Something went wrong"),
   });
 
+  // Hidden owner delete: tap the small star next to a reviewer's name 5 times
+  // within 3 seconds to arm delete mode. Auto-disarms after 60s.
+  const [armed, setArmed] = useState(false);
+  const [taps, setTaps] = useState<number[]>([]);
+  useEffect(() => {
+    if (!armed) return;
+    const t = setTimeout(() => setArmed(false), 60_000);
+    return () => clearTimeout(t);
+  }, [armed]);
+  function registerTap() {
+    if (armed) return;
+    const now = Date.now();
+    const recent = [...taps, now].filter((t) => now - t < 3000);
+    setTaps(recent);
+    if (recent.length >= 5) {
+      setArmed(true);
+      setTaps([]);
+      toast("Delete mode on", { description: "Tap the trash icon to remove a review." });
+    }
+  }
+
+  const deleteMutation = useMutation({
+    mutationFn: deleteReview,
+    onSuccess: () => {
+      toast.success("Review removed");
+      qc.invalidateQueries({ queryKey: ["reviews"] });
+    },
+    onError: (e: Error) => toast.error(e.message || "Could not delete"),
+  });
+
   const avg = useMemo(() => {
     if (!reviews.length) return 0;
     return reviews.reduce((s, r) => s + r.rating, 0) / reviews.length;
@@ -666,7 +696,17 @@ function Reviews() {
               >
                 <div className="flex items-start justify-between gap-4">
                   <div>
-                    <div className="font-display text-lg">{r.name}</div>
+                    <div className="flex items-center gap-2 font-display text-lg">
+                      {r.name}
+                      <button
+                        type="button"
+                        aria-hidden="true"
+                        onClick={registerTap}
+                        className="text-[color:var(--gold)]/40 transition-colors hover:text-[color:var(--gold)]/60"
+                      >
+                        <Star className="h-3 w-3" fill="currentColor" />
+                      </button>
+                    </div>
                     <div className="mt-1 text-xs uppercase tracking-[0.16em] text-muted-foreground">
                       {new Date(r.created_at).toLocaleDateString(undefined, {
                         month: "long",
@@ -675,7 +715,23 @@ function Reviews() {
                       })}
                     </div>
                   </div>
-                  <StarRating value={r.rating} size="sm" />
+                  <div className="flex items-center gap-3">
+                    <StarRating value={r.rating} size="sm" />
+                    {armed && (
+                      <button
+                        type="button"
+                        onClick={() => {
+                          if (confirm(`Delete review from ${r.name}?`)) {
+                            deleteMutation.mutate(r.id);
+                          }
+                        }}
+                        className="rounded-full border border-destructive/40 p-2 text-destructive transition-colors hover:bg-destructive/10"
+                        aria-label="Delete review"
+                      >
+                        <Trash2 className="h-4 w-4" />
+                      </button>
+                    )}
+                  </div>
                 </div>
                 <p className="mt-4 whitespace-pre-wrap text-sm leading-relaxed text-[color:var(--ivory)]/85">
                   {r.body}
