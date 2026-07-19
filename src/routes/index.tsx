@@ -419,7 +419,6 @@ function Gallery() {
           {[
             { before: beforeHighlander1.url, after: afterHighlander1.url, label: "Toyota Highlander — Interior Detail" },
             { before: beforeNavigator1.url, after: afterNavigator1.url, label: "Lincoln Navigator — Interior Detail" },
-            { before: null, after: null, label: "Coming soon" },
           ].map((pair, i) => (
             <div
               key={i}
@@ -433,18 +432,12 @@ function Gallery() {
                       key={label}
                       className="relative aspect-square overflow-hidden rounded-xl bg-[color:var(--navy-deep)]"
                     >
-                      {src ? (
-                        <img
-                          src={src}
-                          alt={`${label} — ${pair.label}`}
-                          className="absolute inset-0 h-full w-full object-cover"
-                          loading="lazy"
-                        />
-                      ) : (
-                        <div className="absolute inset-0 flex items-center justify-center text-xs uppercase tracking-[0.3em] text-muted-foreground/60">
-                          Photo coming soon
-                        </div>
-                      )}
+                      <img
+                        src={src}
+                        alt={`${label} — ${pair.label}`}
+                        className="absolute inset-0 h-full w-full object-cover"
+                        loading="lazy"
+                      />
                       <span className="absolute left-3 top-3 rounded-full bg-[color:var(--navy-deep)]/80 px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-[color:var(--gold)] backdrop-blur">
                         {label}
                       </span>
@@ -458,10 +451,6 @@ function Gallery() {
             </div>
           ))}
         </div>
-
-        <p className="mt-6 text-center text-xs uppercase tracking-[0.2em] text-muted-foreground">
-          Share photos with us and we'll feature them here.
-        </p>
 
       </div>
     </section>
